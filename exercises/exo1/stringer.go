@@ -29,6 +29,7 @@ func (c Circle) Area() string {
 func (r Rectangle) Stringer() string {
 	return fmt.Sprintf("Rectangle of width %g and length %g", r.Width, r.Length)
 }
+
 func (c Circle) Stringer() string {
 	return fmt.Sprintf("Circle of radius %g", c.Radius)
 }
