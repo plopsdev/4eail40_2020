@@ -7,7 +7,7 @@ import (
 func TestNewCartesian(t *testing.T) {
 	c := NewCartesian(1, 2)
 	if (c.x != 1) || (c.y != 2) {
-		t.Errorf("expeceted 1 and 2 as coordinate")
+		t.Errorf("expected 1 and 2 as coordinate")
 	}
 }
 
@@ -41,27 +41,35 @@ func TestCartesian_Coord(t *testing.T) {
 }
 
 func TestCartesian_String(t *testing.T) {
+	type fields struct {
+		x int
+		y int
+	}
 	tests := []struct {
-		name string
-		c    Cartesian
-		want string
+		name   string
+		fields fields
+		want   string
 	}{
 		{
 			"A1",
-			Cartesian{0, 0},
+			fields{0, 0},
 			"A1",
 		},
 		{
 			"H8",
-			Cartesian{7, 7},
+			fields{7, 7},
 			"H8",
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.c.String(); got != tt.want {
-				t.Errorf("Cartesian.String() = %v, want %v", got, tt.want)
+			c := Cartesian{
+				x: tt.fields.x,
+				y: tt.fields.y,
+			}
+			if got := c.String(); got != tt.want {
+				t.Errorf("String() = %v, want %v", got, tt.want)
 			}
 		})
 	}
